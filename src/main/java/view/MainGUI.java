@@ -21,7 +21,7 @@ public class MainGUI extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("MainGUI.fxml"));
 
-        Scene scene = new Scene(root, 300, 275);
+        Scene scene = new Scene(root);
 
         stage.setTitle("FXML Welcome");
         stage.setScene(scene);
