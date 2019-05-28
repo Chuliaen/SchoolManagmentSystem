@@ -6,16 +6,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerMain">
    <children>
       <Label alignment="CENTER" layoutX="77.0" layoutY="7.0" prefHeight="147.0" prefWidth="447.0" text="Menü">
          <font>
             <Font size="72.0" />
          </font>
       </Label>
-      <Button layoutX="51.0" layoutY="285.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Button" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="70.0" />
-      <Button layoutX="429.0" layoutY="245.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Button" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="70.0" />
-      <Label layoutX="17.0" layoutY="200.0" prefHeight="70.0" prefWidth="206.0" text="Schüler hinzufügen">
+      <Button layoutX="51.0" layoutY="285.0" mnemonicParsing="false" onAction="#testButton" prefHeight="50.0" prefWidth="100.0" text="Button" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="70.0" />
+      <Button layoutX="429.0" layoutY="245.0" mnemonicParsing="false" onAction="#testButton2" prefHeight="50.0" prefWidth="100.0" text="Button" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="70.0" />
+      <Label fx:id="inputLbl" layoutX="17.0" layoutY="200.0" prefHeight="70.0" prefWidth="206.0" text="Schüler hinzufügen">
          <font>
             <Font size="24.0" />
          </font></Label>
