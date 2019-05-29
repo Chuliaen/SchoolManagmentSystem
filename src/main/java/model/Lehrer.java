@@ -4,8 +4,8 @@ public class Lehrer extends Personen {
 
     private String kuerzel, klassenleher;
 
-    Lehrer(int id, String vorname, String nachname, String geburtsdatum, String geschlecht, String kuerzel, String klassenleher) {
-        super(id, vorname, nachname, geburtsdatum, geschlecht);
+    Lehrer(String vorname, String nachname, String geburtsdatum, String geschlecht, String kuerzel, String klassenleher) {
+        super(vorname, nachname, geburtsdatum, geschlecht);
         this.kuerzel = kuerzel;
         this.klassenleher = klassenleher;
     }

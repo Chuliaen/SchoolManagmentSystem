@@ -13,10 +13,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AddSchuelerController {
+public class AddLehrerController {
 
     @FXML
-    private TextField idField;
+    private TextField kuerzelField;
 
     @FXML
     private TextField vornameField;
@@ -42,18 +42,18 @@ public class AddSchuelerController {
     @FXML
     private ResourceBundle resources;
 
-    public AddSchuelerController() { }
+    public AddLehrerController() { }
 
     @FXML
     private void initialize() { }
 
     @FXML
-    private void addSchueler() {
+    private void addLehrer() {
         Database database = new Database();
         database.connect();
 
-        database.addSchueler(Integer.parseInt(idField.getText()), vornameField.getText(), nachnameField.getText(),
-                geburtsdatumField.getText(), geschlechtField.getText(), klasseField.getText());
+        database.addLehrer(vornameField.getText(), nachnameField.getText(), geburtsdatumField.getText(),
+                geschlechtField.getText(), kuerzelField.getText(), klasseField.getText());
 
         database.closeConnection();
     }

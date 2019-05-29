@@ -35,7 +35,8 @@ public class Database {
         }
     }
 
-    public void addSchueler(int id, String vorname, String nachname, String geburtsdatum, String geschlecht, String klasse) {
+    public void addSchueler(int id, String vorname, String nachname, String geburtsdatum,
+                            String geschlecht, String klasse) {
         try {
             executeSQL(
                     "INSERT INTO Schüler VALUES (" + id + ", '" +
@@ -73,7 +74,8 @@ public class Database {
         }
     }
 
-    public void addLehrer(String vorname, String nachname, String geburtsdatum, String geschlecht, String kuerzel, String klassenlehrer) {
+    public void addLehrer(String vorname, String nachname, String geburtsdatum,
+                          String geschlecht, String kuerzel, String klassenlehrer) {
         try {
             executeSQL(
                     "INSERT INTO Lehrer VALUES (" + vorname + ", '" +

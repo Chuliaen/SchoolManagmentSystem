@@ -3,14 +3,12 @@ package model;
 class Personen {
 
     private String name, vorname, geburtsdatum, geschlecht;
-    private int id;     //id ab: Lehrer: 000, Schüler: 100
 
-    Personen(int id, String vorname, String nachname, String geburtsdatum, String geschlecht) {
+    Personen(String vorname, String nachname, String geburtsdatum, String geschlecht) {
         this.vorname = vorname;
         this.name = nachname;
         this.geburtsdatum = geburtsdatum;
         this.geschlecht = geschlecht;
-        this.id = id;
     }
 
 
@@ -32,10 +30,6 @@ class Personen {
         return geschlecht;
     }
 
-    public int getID() {
-        return id;
-    }
-
 
     //Setter
 
@@ -53,10 +47,6 @@ class Personen {
 
     public void setGeschlecht(String geschlecht) {
         this.geschlecht = geschlecht;
-    }
-
-    public void setID(int ID) {
-        this.id = ID;
     }
 
 }

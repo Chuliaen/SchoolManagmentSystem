@@ -6,16 +6,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddSchuelerController">
+<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddSchuelerController">
    <children>
-      <Label layoutX="148.0" layoutY="47.0" text="Schüler hinzufügen">
+      <Label layoutX="148.0" layoutY="58.0" text="Schüler hinzufügen" AnchorPane.topAnchor="50.0">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
       <TextField fx:id="geschlechtField" layoutX="379.0" layoutY="250.0" AnchorPane.bottomAnchor="125.0" />
       <TextField fx:id="geburtsdatumField" layoutX="379.0" layoutY="200.0" AnchorPane.bottomAnchor="175.0" />
-      <TextField fx:id="klasseField" layoutX="379.0" layoutY="300.0" AnchorPane.bottomAnchor="75.0" />
+      <TextField layoutX="379.0" layoutY="300.0" AnchorPane.bottomAnchor="75.0" />
       <TextField fx:id="vornameField" layoutX="74.0" layoutY="250.0" />
       <TextField fx:id="idField" layoutX="74.0" layoutY="200.0" />
       <TextField fx:id="nachnameField" layoutX="74.0" layoutY="300.0" />
@@ -26,5 +26,6 @@
       <Label layoutX="379.0" layoutY="233.0" text="Geschlecht" />
       <Label layoutX="379.0" layoutY="283.0" text="Klasse" />
       <Button layoutX="259.0" layoutY="325.0" mnemonicParsing="false" onAction="#addSchueler" prefHeight="38.0" prefWidth="83.0" text="Fertig" />
+      <Button mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="50.0" text="Back" />
    </children>
 </AnchorPane>
