@@ -19,7 +19,7 @@ public class Database {
         try {
             Class.forName("org.sqlite.JDBC");
 
-            connection = DriverManager.getConnection("jdbc:sqlite:C:\\Programming_Projects\\Java\\School Managment System\\src\\main\\resources\\SchoolDatabase.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:SchoolDatabase.db");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,6 +45,7 @@ public class Database {
                             geschlecht + "', '" +
                             klasse +"')"
             );
+
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -80,8 +81,9 @@ public class Database {
                             geburtsdatum + "', '" +
                             geschlecht + "', '" +
                             kuerzel + "', '" +
-                            klassenlehrer +"')"
+                            klassenlehrer +"')" //Klassenlehrer von: #KLASSE#
             );
+
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -113,8 +115,9 @@ public class Database {
         try {
             executeSQL(
                     "INSERT INTO Lehrer VALUES (" + name + ", '" +
-                            klassenlehrer + "')"
+                            klassenlehrer + "')" //#Kürzel von Klassenlehrer
             );
+
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -128,7 +131,7 @@ public class Database {
 
             while(resultSet.next()) {
                 System.out.println("Name: " + resultSet.getString("Name"));
-                System.out.println("Klassenlehrer: " + resultSet.getString("Klassenlehrer"));
+                System.out.println("Klassenlehrer Kürzel: " + resultSet.getString("Klassenlehrer"));
             }
 
             resultSet.close();

@@ -13,12 +13,12 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <TextField layoutX="379.0" layoutY="250.0" AnchorPane.bottomAnchor="125.0" />
-      <TextField layoutX="379.0" layoutY="200.0" AnchorPane.bottomAnchor="175.0" />
-      <TextField layoutX="379.0" layoutY="300.0" AnchorPane.bottomAnchor="75.0" />
-      <TextField layoutX="74.0" layoutY="250.0" />
+      <TextField fx:id="geschlechtField" layoutX="379.0" layoutY="250.0" AnchorPane.bottomAnchor="125.0" />
+      <TextField fx:id="geburtsdatumField" layoutX="379.0" layoutY="200.0" AnchorPane.bottomAnchor="175.0" />
+      <TextField fx:id="klasseField" layoutX="379.0" layoutY="300.0" AnchorPane.bottomAnchor="75.0" />
+      <TextField fx:id="vornameField" layoutX="74.0" layoutY="250.0" />
       <TextField fx:id="idField" layoutX="74.0" layoutY="200.0" />
-      <TextField layoutX="74.0" layoutY="300.0" />
+      <TextField fx:id="nachnameField" layoutX="74.0" layoutY="300.0" />
       <Label layoutX="74.0" layoutY="183.0" text="ID" />
       <Label layoutX="74.0" layoutY="233.0" text="Vorname" />
       <Label layoutX="74.0" layoutY="283.0" text="Nachname" />

@@ -5,6 +5,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.scene.control.TextArea;
+import model.Database;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -13,9 +15,20 @@ public class AddSchuelerController {
     @FXML
     private TextField idField;
 
-    /*
-    Todo: add every TextField
-     */
+    @FXML
+    private TextField vornameField;
+
+    @FXML
+    private TextField nachnameField;
+
+    @FXML
+    private TextField geburtsdatumField;
+
+    @FXML
+    private TextField geschlechtField;
+
+    @FXML
+    private TextField klasseField;
 
     @FXML
     private URL location;
@@ -33,7 +46,13 @@ public class AddSchuelerController {
      */
     @FXML
     private void addSchueler() {
-        System.out.println("Klappt");
+        Database database = new Database();
+        database.connect();
+
+        database.addSchueler(Integer.parseInt(idField.getText()), vornameField.getText(), nachnameField.getText(),
+                geburtsdatumField.getText(), geschlechtField.getText(), klasseField.getText());
+
+        database.closeConnection();
     }
 
 }
