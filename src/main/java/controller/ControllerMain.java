@@ -3,19 +3,17 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collection;
 import java.util.ResourceBundle;
 
 public class ControllerMain {
 
     @FXML
-    private Label inputLbl;
+    private AnchorPane rootPane;
 
     @FXML
     private URL location;
@@ -59,15 +57,11 @@ public class ControllerMain {
      */
 
     @FXML
-    private void addSchueler(javafx.event.ActionEvent event) {
+    private void addSchueler() {
         try {
-            System.out.println("Klappt");
-            Parent parent = FXMLLoader.load(getClass().getClassLoader().getResource("MainGUI.fxml"));
+            AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("AddSchueler.fxml"));
+            rootPane.getChildren().setAll(pane);
 
-            Scene scene = new Scene(parent);
-            Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            appStage.setScene(scene);
-            appStage.show();
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -77,7 +71,7 @@ public class ControllerMain {
     @FXML
     private void addLehrer() {
         System.out.println("Klappt auch");
-        inputLbl.setText("Klappt auch!");
+        //inputLbl.setText("Klappt auch!");
     }
 
 }
