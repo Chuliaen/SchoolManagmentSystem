@@ -1,1 +1,139 @@
 n hat den fremdschlüssel von 1
+
+
+    @FXML
+    private void searchEmployees(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        try {
+            //Get all Employees information
+            ObservableList<Employee> empData = EmployeeDAO.searchEmployees();
+            //Populate Employees on TableView
+            populateEmployees(empData);
+        } catch (SQLException e){
+            System.out.println("Error occurred while getting employees information from DB.\n" + e);
+            throw e;
+        }
+    }
+
+
+    public static ObservableList<Employee> searchEmployees () throws SQLException, ClassNotFoundException {
+            //Declare a SELECT statement
+            String selectStmt = "SELECT * FROM employees";
+
+            //Execute SELECT statement
+            try {
+                //Get ResultSet from dbExecuteQuery method
+                ResultSet rsEmps = DBUtil.dbExecuteQuery(selectStmt);
+
+                //Send ResultSet to the getEmployeeList method and get employee object
+                ObservableList<Employee> empList = getEmployeeList(rsEmps);
+
+                //Return employee object
+                return empList;
+            } catch (SQLException e) {
+                System.out.println("SQL select operation has been failed: " + e);
+                //Return exception
+                throw e;
+            }
+        }
+
+        //Select * from employees operation
+        private static ObservableList<Employee> getEmployeeList(ResultSet rs) throws SQLException, ClassNotFoundException {
+            //Declare a observable List which comprises of Employee objects
+            ObservableList<Employee> empList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+                Employee emp = new Employee();
+                emp.setEmployeeId(rs.getInt("EMPLOYEE_ID"));
+                emp.setFirstName(rs.getString("FIRST_NAME"));
+                emp.setLastName(rs.getString("LAST_NAME"));
+                emp.setEmail(rs.getString("EMAIL"));
+                emp.setPhoneNumber(rs.getString("PHONE_NUMBER"));
+                emp.setHireDate(rs.getDate("HIRE_DATE"));
+                emp.setJobId(rs.getString("JOB_ID"));
+                emp.setSalary(rs.getInt("SALARY"));
+                emp.setCommissionPct(rs.getDouble("COMMISSION_PCT"));
+                emp.setManagerId(rs.getInt("MANAGER_ID"));
+                emp.setDepartmantId(rs.getInt("DEPARTMENT_ID"));
+                //Add employee to the ObservableList
+                empList.add(emp);
+            }
+            //return empList (ObservableList of Employees)
+            return empList;
+        }
+
+
+************************************************************************************************************************
+
+    //TABLE VIEW AND DATA
+    private ObservableList<ObservableList> data;
+    private TableView tableview;
+
+    //MAIN EXECUTOR
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    //CONNECTION DATABASE
+    public void buildData(){
+          Connection c ;
+          data = FXCollections.observableArrayList();
+          try{
+            c = DBConnect.connect();
+            //SQL FOR SELECTING ALL OF CUSTOMER
+            String SQL = "SELECT * from CUSTOMer";
+            //ResultSet
+            ResultSet rs = c.createStatement().executeQuery(SQL);
+
+            /**********************************
+             * TABLE COLUMN ADDED DYNAMICALLY *
+             **********************************/
+            for(int i=0 ; i<rs.getMetaData().getColumnCount(); i++){
+                //We are using non property style for making dynamic table
+                final int j = i;
+                TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i+1));
+                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList,String>,ObservableValue<String>>(){
+                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
+                        return new SimpleStringProperty(param.getValue().get(j).toString());
+                    }
+                });
+
+                tableview.getColumns().addAll(col);
+                System.out.println("Column ["+i+"] ");
+            }
+
+            /********************************
+             * Data added to ObservableList *
+             ********************************/
+            while(rs.next()){
+                //Iterate Row
+                ObservableList<String> row = FXCollections.observableArrayList();
+                for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){
+                    //Iterate Column
+                    row.add(rs.getString(i));
+                }
+                System.out.println("Row [1] added "+row );
+                data.add(row);
+
+            }
+
+            //FINALLY ADDED TO TableView
+            tableview.setItems(data);
+          }catch(Exception e){
+              e.printStackTrace();
+              System.out.println("Error on Building Data");
+          }
+      }
+
+
+      @Override
+      public void start(Stage stage) throws Exception {
+        //TableView
+        tableview = new TableView();
+        buildData();
+
+        //Main Scene
+        Scene scene = new Scene(tableview);
+
+        stage.setScene(scene);
+        stage.show();
+      }

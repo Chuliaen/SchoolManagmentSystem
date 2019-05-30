@@ -2,12 +2,10 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Collection;
 import java.util.ResourceBundle;
 
 public class ControllerMain {
@@ -15,16 +13,10 @@ public class ControllerMain {
     @FXML
     private AnchorPane rootPane;
 
-    @FXML
-    private URL location;
-
-    @FXML
-    private ResourceBundle resources;
-
     public ControllerMain() { }
 
     @FXML
-    private void initialize() { }
+    private void initialize(URL location, ResourceBundle resources) { }
 
     @FXML
     private void addSchueler() {
@@ -42,6 +34,18 @@ public class ControllerMain {
     private void addLehrer() {
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("AddLehrer.fxml"));
+            rootPane.getChildren().setAll(pane);
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void showSchueler() {
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("ShowSchueler.fxml"));
             rootPane.getChildren().setAll(pane);
 
         }

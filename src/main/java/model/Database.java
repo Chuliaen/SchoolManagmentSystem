@@ -1,5 +1,8 @@
 package model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -52,26 +55,32 @@ public class Database {
         }
     }
 
-    public void getSchueler() {
+    public ObservableList<Schueler> getSchueler() {
         try {
             Statement stat = connection.createStatement();
 
             ResultSet rs = stat.executeQuery("SELECT * FROM Schüler");
+            ObservableList<Schueler> list = FXCollections.observableArrayList();
 
             while(rs.next()) {
-                System.out.println("ID: " + rs.getInt("ID"));
-                System.out.println("Vorname: " + rs.getString("Vorname"));
-                System.out.println("Nachname: " + rs.getString("Nachname"));
-                System.out.println("Geburtstag: " + rs.getString("Geburtstag"));
-                System.out.println("Geschlecht: " + rs.getString("Geschlecht"));
-                System.out.println("Klasse: " + rs.getString("Klasse"));
+                int id = rs.getInt("ID");
+                String fn = rs.getString("Vorname");
+                String ln = rs.getString("Nachname");
+                String bd = rs.getString("Geburtstag");
+                String gn = rs.getString("Geschlecht");
+                String cl = rs.getString("Klasse");
+
+                Schueler tmp = new Schueler(id, fn, ln, bd, gn, cl);
+                list.add(tmp);
             }
 
             rs.close();
+            return list;
 
         } catch(SQLException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     public void addLehrer(String vorname, String nachname, String geburtsdatum,

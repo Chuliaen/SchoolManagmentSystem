@@ -2,11 +2,10 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
-import javafx.scene.control.TextArea;
 import model.Database;
 
 import java.io.IOException;
@@ -36,26 +35,34 @@ public class AddSchuelerController {
     @FXML
     private AnchorPane rootPane;
 
-    @FXML
-    private URL location;
-
-    @FXML
-    private ResourceBundle resources;
-
     public AddSchuelerController() { }
 
     @FXML
-    private void initialize() { }
+    private void initialize(URL location, ResourceBundle resources) { }
 
     @FXML
     private void addSchueler() {
-        Database database = new Database();
-        database.connect();
+        try {
+            Database database = new Database();
+            database.connect();
 
-        database.addSchueler(Integer.parseInt(idField.getText()), vornameField.getText(), nachnameField.getText(),
-                geburtsdatumField.getText(), geschlechtField.getText(), klasseField.getText());
+            database.addSchueler(Integer.parseInt(idField.getText()), vornameField.getText(), nachnameField.getText(),
+                    geburtsdatumField.getText(), geschlechtField.getText(), klasseField.getText());
 
-        database.closeConnection();
+            database.closeConnection();
+
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Schüler hinzufügen");
+            alert.setHeaderText("Schüler hinzufügen");
+            alert.setContentText("Der Schüler wurde hinzugefügt, sie werden zum Menü zurück geleitet");
+            alert.showAndWait();
+
+            back();
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
