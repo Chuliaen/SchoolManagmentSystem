@@ -22,7 +22,7 @@ public class Database {
         try {
             Class.forName("org.sqlite.JDBC");
 
-            connection = DriverManager.getConnection("jdbc:sqlite:SchoolDatabase.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:C:\\Programming_Projects\\Java\\School Managment System\\src\\main\\resources\\SchoolDatabase.db");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,7 +66,7 @@ public class Database {
                 int id = rs.getInt("ID");
                 String fn = rs.getString("Vorname");
                 String ln = rs.getString("Nachname");
-                String bd = rs.getString("Geburtstag");
+                String bd = rs.getString("Geburtsdatum");
                 String gn = rs.getString("Geschlecht");
                 String cl = rs.getString("Klasse");
 

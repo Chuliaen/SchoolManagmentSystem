@@ -22,19 +22,19 @@ public class ShowSchuelerController {
 
     //Every needed TableView data
     @FXML
-    private TableView<Schueler> tableView;
+    private TableView tableView;
     @FXML
-    private TableColumn<Object, Object> schuelerID;
+    private TableColumn schuelerID;
     @FXML
-    private TableColumn<Object, Object> schuelerVorname;
+    private TableColumn schuelerVorname;
     @FXML
-    private TableColumn<Object, Object> schuelerNachname;
+    private TableColumn schuelerNachname;
     @FXML
-    private TableColumn<Object, Object> schuelerGeburtsdatum;
+    private TableColumn schuelerGeburtsdatum;
     @FXML
-    private TableColumn<Object, Object> schuelerGeschlecht;
+    private TableColumn schuelerGeschlecht;
     @FXML
-    private TableColumn<Object, Object> schuelerKlasse;
+    private TableColumn schuelerKlasse;
 
     Database db = new Database();
 
@@ -43,16 +43,9 @@ public class ShowSchuelerController {
 
     public ShowSchuelerController() { }
 
+    //Todo: schaun wie das geht!
     @FXML
     private void initialize(URL location, ResourceBundle resources) {
-        //make sure the property value factory should be exactly same as the e.g getStudentId from your model class
-        schuelerID.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        schuelerVorname.setCellValueFactory(new PropertyValueFactory<>("Vorname"));
-        schuelerNachname.setCellValueFactory(new PropertyValueFactory<>("Nachname"));
-        schuelerGeburtsdatum.setCellValueFactory(new PropertyValueFactory<>("Geburtsdatum"));
-        schuelerGeschlecht.setCellValueFactory(new PropertyValueFactory<>("Geschlecht"));
-        schuelerKlasse.setCellValueFactory(new PropertyValueFactory<>("Klasse"));
-        //add your data to the table here.
         db.connect();
         tableView.setItems(db.getSchueler());
         db.closeConnection();
