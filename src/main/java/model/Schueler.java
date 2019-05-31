@@ -20,10 +20,18 @@ public class Schueler extends Personen {
         return klasse;
     }
 
+    public int getId() {
+        return id;
+    }
 
     //Setter
 
     public void setKlasse(String klasse) {
         this.klasse = klasse;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }

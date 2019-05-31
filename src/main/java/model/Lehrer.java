@@ -33,4 +33,5 @@ public class Lehrer extends Personen {
     public void setKlassenleher(String klassenleher) {
         this.klassenleher = klassenleher;
     }
+
 }

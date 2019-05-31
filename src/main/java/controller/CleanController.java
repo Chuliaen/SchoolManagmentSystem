@@ -19,4 +19,5 @@ public class CleanController {
     private void buttonMethod(){
         //implement method for button
     }
+
 }

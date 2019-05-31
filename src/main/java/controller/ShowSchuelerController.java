@@ -17,9 +17,6 @@ import java.util.ResourceBundle;
 
 public class ShowSchuelerController {
 
-    //Used to show Schüler in a TableView
-    private ObservableList<ObservableList> data;
-
     //Every needed TableView data
     @FXML
     private TableView tableView;
@@ -45,11 +42,7 @@ public class ShowSchuelerController {
 
     //Todo: schaun wie das geht!
     @FXML
-    private void initialize(URL location, ResourceBundle resources) {
-        db.connect();
-        tableView.setItems(db.getSchueler());
-        db.closeConnection();
-    }
+    private void initialize(URL location, ResourceBundle resources) { }
 
     @FXML
     private void back() {
@@ -62,4 +55,5 @@ public class ShowSchuelerController {
             e.printStackTrace();
         }
     }
+
 }
