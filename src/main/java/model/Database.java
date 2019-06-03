@@ -55,13 +55,33 @@ public class Database {
         }
     }
 
-    public ObservableList<Schueler> getSchueler() {
+    public static void main(String[] args) {
+        Database database = new Database();
+        database.connect();
+        System.out.println(database.getSchueler());
+        database.closeConnection();
+    }
+
+    public ObservableList<String> getSchueler() {
         try {
             Statement stat = connection.createStatement();
 
             ResultSet rs = stat.executeQuery("SELECT * FROM Schüler");
-            ObservableList<Schueler> list = FXCollections.observableArrayList();
+            //ObservableList list = FXCollections.observableArrayList();
+            ObservableList data = FXCollections.observableArrayList();
+            while (rs.next()) {
+                //Iterate Row
+                ObservableList<String> row = FXCollections.observableArrayList();
+                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                    //Iterate Column
+                    row.add(rs.getString(i));
+                }
+                data.add(row);
+                return data;
 
+            }
+
+            /* Idk what to do with this now (Just don't delete it)
             while(rs.next()) {
                 int id = rs.getInt("ID");
                 String fn = rs.getString("Vorname");
@@ -76,6 +96,7 @@ public class Database {
 
             rs.close();
             return list;
+             */
 
         } catch(SQLException e) {
             e.printStackTrace();
@@ -162,4 +183,7 @@ public class Database {
         }
     }
 
+    public Connection getConnection() {
+        return connection;
+    }
 }
