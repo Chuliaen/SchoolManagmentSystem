@@ -21,6 +21,7 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class ShowSchuelerController implements Initializable {
@@ -53,10 +54,6 @@ public class ShowSchuelerController implements Initializable {
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         setupTable();
-        db.connect();
-        ObservableList data = db.getSchueler();
-        tableView.setItems(data);
-        db.closeConnection();
     }
 
     @FXML
@@ -101,7 +98,45 @@ public class ShowSchuelerController implements Initializable {
 
     @FXML
     private void search(){
-        //Todo: Search based on input
+        String id = idField.getText();
+        String vorname = vornameField.getText();
+        String nachname = nachnameField.getText();
+        String geschlecht = geschlechtField.getText();
+        String klasse = klasseField.getText();
+
+        String query = "SELECT * FROM Schüler WHERE ";
+        String tmp = "";
+
+        if (!id.equals("")) {
+            query += tmp + "ID = '" + id + "'";
+            tmp = " AND ";
+        }
+        if (!vorname.equals("")) {
+            query += tmp + "Vorname = '" + vorname + "'";
+            tmp = " AND ";
+        }
+        if (!nachname.equals("")) {
+            query += tmp + "Nachname = '" + nachname + "'";
+            tmp = " AND ";
+        }
+        if (!geschlecht.equals("")) {
+            query += tmp + "Geschlecht = '" + geschlecht + "'";
+            tmp = " AND ";
+        }
+        if (!klasse.equals("")) {
+            query += tmp + "Klasse = '" + klasse + "'";
+            tmp = " AND ";
+        }
+        if (id.equals("") && klasse.equals("") && vorname.equals("") && nachname.equals("") && geschlecht.equals("")) {
+            query = "SELECT * FROM Schüler";
+        }
+        db.connect();
+        System.out.println(query);
+        ObservableList data = db.getSchueler(query);
+        tableView.getItems().clear();
+        tableView.setItems(data);
+        db.closeConnection();
+
     }
 
 }
