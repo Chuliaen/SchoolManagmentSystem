@@ -19,11 +19,17 @@ public class Database {
         connection = null;
     }
 
+    public static void main(String[] args) {
+        Database database = new Database();
+        database.connect();
+        database.closeConnection();
+    }
+
     public void connect() {
         try {
             Class.forName("org.sqlite.JDBC");
 
-            connection = DriverManager.getConnection("jdbc:sqlite:C:\\Programming_Projects\\Java\\School Managment System\\src\\main\\resources\\SchoolDatabase.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:C:\\Programming_Projects\\Java\\School Managment System\\SchoolDatabase.db");
 
         } catch (Exception e) {
             e.printStackTrace();
